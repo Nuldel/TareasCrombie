@@ -8,7 +8,7 @@ def create_tables():
     Base.metadata.create_all(bind=engine)
 
 def start_app():
-    taskApp = FastAPI(tittle=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
+    taskApp = FastAPI(tittle=settings.PROJECT_NAME)
     create_tables()
 
 taskApp = start_app()
