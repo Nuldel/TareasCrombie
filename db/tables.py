@@ -7,10 +7,10 @@ class Base:
     @declared_attr
     def __tablename__(cls) -> str:
         return cls.__name__.lower()
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, nullable=False)
 
 # (Separar en mas archivos si se agregan mas modelos a la db)
 class Task(Base):
-    title = Column(String(50))
+    title = Column(String(50), nullable=False)
     description = Column(String(500))
-    state = Column(Enum('Problemas', 'Trabajando', 'Listo', name='Estado'))
+    state = Column(Enum('Problemas', 'Trabajando', 'Listo', name='Estado'), nullable=False)
