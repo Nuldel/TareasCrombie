@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from db.schemas import newTask, status
 from db.tables import Task
 
+# Las funciones que manejar los requests
 def create_Task(task: newTask, db: Session):
     status.validate_status(task.status)
     new_T = Task(title = task.title,
