@@ -1,4 +1,4 @@
-### API Tareas (tasks)
+# API Tareas (tasks)
 ## Descripción
 Una API simple (backend) de un organizador de tareas online; puede considerarse una simplificación de Trello. Se conecta a una base de datos de elección y soporta 4 tareas básicas: ver tareas, agregar tarea, modificar el estado de una tarea y eliminar una tarea. Está construida en FastAPI (Python) con diversas herramientas integradas, y puede funcionar como *boilerplate* para una API más grande y con más funcionalidad.
 
