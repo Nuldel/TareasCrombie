@@ -16,8 +16,6 @@ class status(str):
 
     @classmethod
     def validate_status(cls, status: str) -> str:
-        if not isinstance(status, str):
-            raise TypeError('Se requiere string')
         if not status in ['Problemas', 'Trabajando', 'Listo']:
             raise ValueError(f"Opción inválida: {status}")
         return status
