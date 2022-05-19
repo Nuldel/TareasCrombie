@@ -8,9 +8,11 @@ from routers.task_handlers import task_router
 def create_tables():
     Base.metadata.create_all(bind=engine)
 
+# empezamos la app
 def start_app():
     taskApp = FastAPI(tittle=settings.PROJECT_NAME)
     create_tables()
+    # las rutas se manejan por separado
     taskApp.include_router(task_router)
     return taskApp
 

@@ -6,6 +6,8 @@ from db.session import get_db
 
 task_router = APIRouter()
 
+# creamos una dependencia de la BBDD para poder reemplazarla en los tests
+# (inyeccion de dependencias)
 @task_router.get("/tareas")
 def fetch_all(db: Session = Depends(get_db)):
     return show_All(db)

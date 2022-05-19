@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
+# clases usadas exclusivamente para corroborar tipos (pydantic)
 class newTask(BaseModel):
     title: str
     description: Optional[str]
@@ -9,6 +10,7 @@ class newTask(BaseModel):
     class Config:
         orm_mode = True
 
+# esta clase seria más util si se usara en un atributo de otra clase
 class status(str):
     @classmethod
     def __get_validators__(cls):
