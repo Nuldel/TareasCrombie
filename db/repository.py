@@ -1,10 +1,8 @@
 from sqlalchemy.orm import Session
 from .schemas import newTask, status
 from .tables import Task
-from .session import get_db
-from fastapi import Depends
 
-def create_Task(task: newTask, db: Session = next(get_db())):
+def create_Task(task: newTask, db: Session):
     new_T = Task(title = task.title,
                  description = task.description,
                  status = task.status)
@@ -13,14 +11,14 @@ def create_Task(task: newTask, db: Session = next(get_db())):
     db.refresh(new_T)
     return new_T
 
-def show_Tasks(category: status, db: Session = next(get_db())):
+def show_Tasks(category: status, db: Session):
     status.validate_status(category)
     return db.query(Task).filter(Task.status == category).all()
 
-def show_All(db: Session = next(get_db())):
+def show_All(db: Session):
     return db.query(Task).all()
 
-def delete_Task(id: int, db: Session = next(get_db())):
+def delete_Task(id: int, db: Session):
     task = db.query(Task).filter(Task.id == id).first()
 
     if not task:
@@ -31,9 +29,9 @@ def delete_Task(id: int, db: Session = next(get_db())):
 
     db.delete(task)
     db.commit()
-    return 0
+    return {"OK", 200}
 
-def change_status(id: int, category: status, db: Session = next(get_db())):
+def change_status(id: int, category: status, db: Session):
     status.validate_status(category)
     task = db.query(Task).filter(Task.id == id).first()
 
