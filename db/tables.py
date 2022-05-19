@@ -13,4 +13,4 @@ class Base:
 class Task(Base):
     title = Column(String(50), nullable=False)
     description = Column(String(500))
-    state = Column(Enum('Problemas', 'Trabajando', 'Listo', name='Estado'), nullable=False)
+    status = Column(Enum('Problemas', 'Trabajando', 'Listo', name='Estado'), nullable=False)

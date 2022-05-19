@@ -2,8 +2,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-crombie_path = Path('.')/'.env'
-load_dotenv(dotenv_path=crombie_path)
+load_dotenv()
 
 class Settings:
     PROJECT_NAME: str = "Organizador de Tareas"
