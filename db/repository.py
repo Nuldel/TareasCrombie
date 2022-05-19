@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Session
 from .schemas import newTask, status
 from .tables import Task
-from .session import SessionLocal
+from .session import get_db
+from fastapi import Depends
 
-def create_Task(task: newTask, db: Session = SessionLocal()):
+def create_Task(task: newTask, db: Session = next(get_db())):
     new_T = Task(title = task.title,
                  description = task.description,
                  status = task.status)
@@ -12,14 +13,14 @@ def create_Task(task: newTask, db: Session = SessionLocal()):
     db.refresh(new_T)
     return new_T
 
-def show_Tasks(category: status, db: Session = SessionLocal()):
+def show_Tasks(category: status, db: Session = next(get_db())):
     status.validate_status(category)
     return db.query(Task).filter(Task.status == category).all()
 
-def show_All(db: Session = SessionLocal()):
+def show_All(db: Session = next(get_db())):
     return db.query(Task).all()
 
-def delete_Task(id: int, db: Session = SessionLocal()):
+def delete_Task(id: int, db: Session = next(get_db())):
     task = db.query(Task).filter(Task.id == id).first()
 
     if not task:
@@ -32,7 +33,7 @@ def delete_Task(id: int, db: Session = SessionLocal()):
     db.commit()
     return 0
 
-def change_status(id: int, category: status, db: Session = SessionLocal()):
+def change_status(id: int, category: status, db: Session = next(get_db())):
     status.validate_status(category)
     task = db.query(Task).filter(Task.id == id).first()
 
