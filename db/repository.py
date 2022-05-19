@@ -1,8 +1,10 @@
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from .schemas import newTask, status
-from .tables import Task
+from db.schemas import newTask, status
+from db.tables import Task
 
 def create_Task(task: newTask, db: Session):
+    status.validate_status(task.status)
     new_T = Task(title = task.title,
                  description = task.description,
                  status = task.status)
@@ -37,7 +39,7 @@ def change_status(id: int, category: status, db: Session):
 
     if not task:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=404,
             detail="Task not found"
         )
 
