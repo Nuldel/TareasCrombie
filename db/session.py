@@ -6,3 +6,10 @@ from core.config import settings
 # una db en particular
 engine = create_engine(settings.DB_URL)
 SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
+
+def get_db():
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
