@@ -2,6 +2,8 @@
 ## Descripción
 Una API simple (backend) de un organizador de tareas online; puede considerarse una simplificación de Trello. Se conecta a una base de datos de elección y soporta 4 tareas básicas: ver tareas, agregar tarea, modificar el estado de una tarea y eliminar una tarea. Está construida en FastAPI (Python) con diversas herramientas integradas, y puede funcionar como *boilerplate* para una API más grande y con más funcionalidad.
 
+Esta es la versión inicial de esta API, dejada por aparte sólo para referencias futuras; el código final incluirá un sistema de usuarios con autenticación segura y permisos de lectura/escritura para las tareas.
+
 ## Instalación
 Python (3.6+) es el requisito básico, pero además usamos:
 * **pip** instalar dependencias.
