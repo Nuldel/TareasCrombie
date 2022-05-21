@@ -4,5 +4,7 @@ sqlalchemy
 psycopg2
 python-dotenv
 pydantic
+pydantic[email]
 pytest
 requests
+bcrypt
