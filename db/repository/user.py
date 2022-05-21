@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from db.tables import User
 from db.schemas import NewUser, LoginUser, CookieUser
@@ -36,7 +37,6 @@ def check_in(loginUser: LoginUser, is_online: bool, db: Session):
         )
 
     bpw = loginUser.password.encode('utf-8')
-    salt = gensalt()
     if not checkpw(bpw, db_user.password):
         raise HTTPException(
             status_code=401,

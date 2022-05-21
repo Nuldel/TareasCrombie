@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
-from sqlalchemy import Column, Integer, String, Enum, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Enum, ForeignKey, Table, LargeBinary
 from sqlalchemy.orm import relationship
 
 # Declaracion de clase base (buena practica)
@@ -16,7 +16,7 @@ class Base:
 class User(Base):
     name = Column(String(100), nullable=False)
     email = Column(String(255), nullable=False)
-    password = Column(String(72), nullable=False)
+    password = Column(LargeBinary(72), nullable=False)
     ownership = relationship("Task")
 
 class Task(Base):
