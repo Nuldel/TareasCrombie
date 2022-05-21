@@ -3,7 +3,7 @@ from db.tables import User
 from db.schemas import NewUser, LoginUser, CookieUser
 from bcrypt import gensalt, hashpw, checkpw
 
-def add_user(newUser: NewUser, is_online: Bool, db: Session):
+def add_user(newUser: NewUser, is_online: bool, db: Session):
     if is_online:
         raise HTTPException(
             status_code=403,
@@ -27,7 +27,7 @@ def add_user(newUser: NewUser, is_online: Bool, db: Session):
     db.refresh(new_U)
     return {"OK", 200}
 
-def check_in(loginUser: LoginUser, is_online: Bool, db: Session):
+def check_in(loginUser: LoginUser, is_online: bool, db: Session):
     db_user = db.query(User).filter(User.email == loginUser.email).first()
     if not db_user:
         raise HTTPException(

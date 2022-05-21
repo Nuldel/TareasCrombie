@@ -10,9 +10,15 @@ class Base:
 
     @declared_attr
     def __tablename__(cls) -> str:
-        return cls.__name__.lower()
+        return cls.__name__
 
-# (Separar en mas archivos si se agregan mas modelos a la db)
+# Los modelos que forman el esquema de la BBDD
+class User(Base):
+    name = Column(String(100), nullable=False)
+    email = Column(String(255), nullable=False)
+    password = Column(String(72), nullable=False)
+    ownership = relationship("Task")
+
 class Task(Base):
     title = Column(String(50), nullable=False)
     description = Column(String(500))
@@ -20,12 +26,6 @@ class Task(Base):
     visibility = Column(Enum('Público', 'Privado', name='Visibilidad'), nullable=False)
     owner = Column(Integer, ForeignKey('User.id'))
 #    collabs = relationship("User", secondary=association_table)
-
-class User(Base):
-    name = Column(String(100), nullable=False)
-    email = Column(String(255), nullable=False)
-    password = Column(String(72), nullable=False)
-    ownership = relationship("Task")
 
 #association_table = Table('association', Base.metadata,
 #    Column('left_id', ForeignKey('left.id'), primary_key=True),
