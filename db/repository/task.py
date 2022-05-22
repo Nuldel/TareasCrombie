@@ -62,7 +62,7 @@ def delete_Task(id: int, user_id: Union[int, None], db: Session):
     db.commit()
     return {"OK", 200}
 
-def edit_task(id: int, user_id: Union[int, None], category: str, visibility: str, db: Session):
+def change_task(id: int, user_id: Union[int, None], category: str, visibility: str, db: Session):
     validate_status(category)
     validate_visibility(visibility)
     task = db.query(Task).filter(Task.id == id).first()

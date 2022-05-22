@@ -27,7 +27,6 @@ class LoginUser(BaseModel):
 class CookieUser(BaseModel):
     id: int
     name: str
-    email: EmailStr
 
 # una funcion separada para validar el status
 def validate_status(status: str) -> str:

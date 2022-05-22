@@ -7,6 +7,10 @@ load_dotenv()
 class Settings:
     PROJECT_NAME: str = "Organizador de Tareas"
 
+    JWT_KEY: str = "a6646096e9e3fe168b48a50d5b966e164030aabf75a91c989c0ed27c8d47cf90"
+    JWT_ALGORITHM: str = "HS256"
+    JWT_EXPIRE_MINUTES: int = 1440
+
     DB_USER: str = os.getenv("DB_USER")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD")
     DB_SERVER: str = os.getenv("DB_SERVER", default="localhost")

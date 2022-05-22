@@ -8,3 +8,4 @@ pydantic[email]
 pytest
 requests
 bcrypt
+python-jose[cryptography]

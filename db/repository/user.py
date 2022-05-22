@@ -29,6 +29,11 @@ def add_user(newUser: NewUser, is_online: bool, db: Session):
     return {"OK", 200}
 
 def check_in(loginUser: LoginUser, is_online: bool, db: Session):
+    if is_online:
+        raise HTTPException(
+            status_code=403,
+            detail="Sesión ya iniciada"
+        )
     db_user = db.query(User).filter(User.email == loginUser.email).first()
     if not db_user:
         raise HTTPException(
@@ -44,6 +49,5 @@ def check_in(loginUser: LoginUser, is_online: bool, db: Session):
         )
 
     cookieUser = CookieUser(id=db_user.id,
-                            name=db_user.name,
-                            email=db_user.email)
+                            name=db_user.name)
     return cookieUser

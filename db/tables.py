@@ -25,9 +25,3 @@ class Task(Base):
     status = Column(Enum('Problemas', 'Trabajando', 'Listo', name='Estado'), nullable=False)
     visibility = Column(Enum('Público', 'Privado', name='Visibilidad'), nullable=False)
     owner = Column(Integer, ForeignKey('User.id'))
-#    collabs = relationship("User", secondary=association_table)
-
-#association_table = Table('association', Base.metadata,
-#    Column('left_id', ForeignKey('left.id'), primary_key=True),
-#    Column('right_id', ForeignKey('right.id'), primary_key=True)
-#)
