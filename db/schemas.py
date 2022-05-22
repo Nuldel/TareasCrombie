@@ -1,23 +1,40 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 # clases usadas exclusivamente para corroborar tipos (pydantic)
-class newTask(BaseModel):
+class NewTask(BaseModel):
     title: str
     description: Optional[str]
     status: str = 'Problemas'
+    visibility: str = 'Público'
+#    collabs: [int]
 
     class Config:
         orm_mode = True
 
-# esta clase seria más util si se usara en un atributo de otra clase
-class status(str):
-    @classmethod
-    def __get_validators__(cls):
-        yield cls.validate_status
+class NewUser(BaseModel):
+    name: str
+    email: EmailStr
+    password: str
 
-    @classmethod
-    def validate_status(cls, status: str) -> str:
-        if not status in ['Problemas', 'Trabajando', 'Listo']:
-            raise ValueError(f"Opción inválida: {status}")
-        return status
+    class Config:
+        orm_mode = True
+
+class LoginUser(BaseModel):
+    email: str
+    password: str
+
+class CookieUser(BaseModel):
+    id: int
+    name: str
+
+# una funcion separada para validar el status
+def validate_status(status: str) -> str:
+    if not status in ['Problemas', 'Trabajando', 'Listo']:
+        raise ValueError(f"Opción inválida: {status}")
+    return status
+
+def validate_visibility(vis: str) -> str:
+    if not vis in ['Público', 'Privado']:
+        raise ValueError(f"Opción Inválida: {vis}")
+    return vis

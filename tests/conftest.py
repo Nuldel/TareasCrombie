@@ -11,11 +11,13 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from db.tables import Base
 from db.session import get_db
 from routers.task_handlers import task_router
+from routers.user_handlers import user_router
 
 # creamos una nueva app, pero con el enrutamiento original
 def start_app():
     taskApp = FastAPI()
     taskApp.include_router(task_router)
+    taskApp.include_router(user_router)
     return taskApp
 
 # usamos SQLite en lugar de la BBDD original
